@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PIN</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+  <script defer th:src="@{/js/app.js}"></script>
+</head>
+<body>
+<main class="shell atm-shell">
+  <section class="panel stack atm-panel">
+    <h1>PIN eingeben</h1>
+    <div class="alert" th:if="${error}" th:text="${error}"></div>
+    <form class="stack" method="post" th:action="@{'/atm/' + ${sessionId} + '/pin'}" data-pin-form>
+      <input id="pinValue" name="pin" type="hidden" data-pin-value>
+      <div class="pin-machine">
+        <div class="pin-display" aria-live="polite">
+          <span>Bitte geben Sie Ihre vierstellige PIN ein.</span>
+          <div class="pin-dots" aria-hidden="true">
+            <span class="pin-dot" data-pin-dot></span>
+            <span class="pin-dot" data-pin-dot></span>
+            <span class="pin-dot" data-pin-dot></span>
+            <span class="pin-dot" data-pin-dot></span>
+          </div>
+        </div>
+        <div class="keypad" aria-label="PIN-Tastatur">
+          <button type="button" data-pin-key="1">1</button>
+          <button type="button" data-pin-key="2">2</button>
+          <button type="button" data-pin-key="3">3</button>
+          <button type="button" data-pin-key="4">4</button>
+          <button type="button" data-pin-key="5">5</button>
+          <button type="button" data-pin-key="6">6</button>
+          <button type="button" data-pin-key="7">7</button>
+          <button type="button" data-pin-key="8">8</button>
+          <button type="button" data-pin-key="9">9</button>
+          <button type="button" class="key-action" data-pin-clear>Loeschen</button>
+          <button type="button" data-pin-key="0">0</button>
+          <button type="button" class="key-action" data-pin-back>Zurueck</button>
+          <button type="submit" class="key-submit">Bestaetigen</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
+</body>
+</html>

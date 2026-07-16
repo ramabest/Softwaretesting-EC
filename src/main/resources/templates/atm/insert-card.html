@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EC Cash App</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="shell atm-shell">
+  <div class="topbar">
+    <div class="brand">EC Cash App</div>
+    <nav class="nav"><a class="button secondary" th:href="@{/admin}">Admin</a></nav>
+  </div>
+  <section class="panel stack atm-panel">
+    <div>
+      <h1>Karte einstecken</h1>
+      <p>Waehlen Sie eine Testkarte aus.</p>
+    </div>
+    <div class="alert" th:if="${error}" th:text="${error}"></div>
+    <form class="stack" method="post" th:action="@{/atm/insert}">
+      <label>Kartennummer
+        <select name="cardNumber" required>
+          <option value="" disabled selected>Karte auswaehlen</option>
+          <option th:each="card : ${cardOptions}" th:value="${card.cardNumber}" th:text="${card.label}"></option>
+        </select>
+      </label>
+      <div class="actions">
+        <button type="submit">Karte verwenden</button>
+      </div>
+    </form>
+  </section>
+</main>
+</body>
+</html>

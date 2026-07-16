@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auszahlung</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="shell atm-shell">
+  <section class="panel stack atm-panel">
+    <h1>Bargeld abheben</h1>
+    <div class="alert" th:if="${error}" th:text="${error}"></div>
+    <form class="stack" method="post" th:action="@{'/atm/' + ${sessionId} + '/withdraw'}">
+      <label>Betrag
+        <select name="amountCents">
+          <option th:each="amount : ${amounts}" th:value="${amount}" th:text="${#numbers.formatDecimal(amount / 100, 1, 0)} + ' EUR'"></option>
+        </select>
+      </label>
+      <div class="actions equal">
+        <button type="submit">Auszahlen</button>
+        <a class="button secondary" th:href="@{'/atm/' + ${sessionId} + '/menu'}">Zurueck</a>
+      </div>
+    </form>
+  </section>
+</main>
+</body>
+</html>
