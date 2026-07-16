@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kontostand</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="shell atm-shell">
+  <section class="panel stack atm-panel">
+    <h1>Kontostand</h1>
+    <div class="metric"><span>Verfuegbarer Kontostand</span><strong th:text="${balance}"></strong></div>
+    <a class="button secondary" th:href="@{'/atm/' + ${sessionId} + '/menu'}">Zurueck</a>
+  </section>
+</main>
+</body>
+</html>
